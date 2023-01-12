@@ -1,16 +1,21 @@
 package com.baranbatur.deliveryChainManagement.model;
 
-public class Retailer {
+public class Supplier {
+
     private int id;
     private String name;
     private String email;
     private String password;
+    private String phone;
 
-    public Retailer(int id, String name, String email, String password) {
-        this.id = id;
+    public Supplier() {
+    }
+
+    public Supplier(String name, String email, String password, String phone) {
         this.name = name;
         this.email = email;
         this.password = password;
+        this.phone = phone;
     }
 
     public int getId() {
@@ -43,5 +48,13 @@ public class Retailer {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

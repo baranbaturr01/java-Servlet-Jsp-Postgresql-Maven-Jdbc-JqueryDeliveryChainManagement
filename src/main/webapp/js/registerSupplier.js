@@ -1,15 +1,16 @@
 $(document).ready(function () {
     //register
-    $("#register").submit(function () {
-        console.log("register2");
+    $("#registerSupplier").submit(function () {
+        console.log("tıklandı")
         var name = $("#name").val();
-        var password = $("#password").val();
-        var email = $("#email").val();
-        var dataString = 'name=' + name + '&password=' + password + '&email=' + email;
+        var password = $("#passwordForRegister").val();
+        var email = $("#emailForRegister").val();
+        var phone = $("#phone").val();
+        var dataString = 'name=' + name + '&password=' + password + '&email=' + email + '&phone=' + phone;
         if ($.trim(name).length > 0) {
             $.ajax({
                 type: "POST",
-                url: "http://localhost:8080/Delivery_Chain_Management-1.0-SNAPSHOT/register",
+                url: "http://localhost:8080/Delivery_Chain_Management-1.0-SNAPSHOT/registerSupplier",
                 data: dataString,
                 dataType: "json",
                 crossDomain: true,
@@ -21,9 +22,9 @@ $(document).ready(function () {
                     console.log(data);
                     if (data.success === true) {
 
-                        //localStorage.setItem("name", data.name);
-                        //localStorage.setItem("email", data.email);
-                        //     show the user that the registration was successful
+                        localStorage.setItem("name", data.name);
+
+                        window.location.href = "http://localhost:8080/Delivery_Chain_Management-1.0-SNAPSHOT/product-list";
                         alert("Registration successful");
                     }
                 }

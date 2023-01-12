@@ -6,7 +6,7 @@ $(document).submit(function () {
     if ($.trim(email).length > 0 && $.trim(password).length > 0) {
         $.ajax({
             type: "POST",
-            url: "http://localhost:8080/demo-1.0-SNAPSHOT/login",
+            url: "http://localhost:8080/Delivery_Chain_Management-1.0-SNAPSHOT/login",
             data: dataString,
             dataType: "json",
             crossDomain: true,
@@ -26,4 +26,5 @@ $(document).submit(function () {
         });
     }
     return false;
-}
+});
+
