@@ -5,25 +5,19 @@ public class Product {
     private int id;
     private String name;
     private String description;
-    private double price;
+    private int price;
     private int stock;
     private String image;
+    private int supplier_id;
 
-    public Product(int id, String name, String description, double price, int stock, String image) {
-        this.id = id;
+
+    public Product(String name, String description, int price, int stock, String image, int supplier_id) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.stock = stock;
         this.image = image;
-    }
-
-    public Product(String name, String description, double price, int stock, String image) {
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.stock = stock;
-        this.image = image;
+        this.supplier_id = supplier_id;
     }
 
     public int getId() {
@@ -50,11 +44,19 @@ public class Product {
         this.description = description;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public int getSupplier_id() {
+        return supplier_id;
+    }
+
+    public void setSupplier_id(int supplier_id) {
+        this.supplier_id = supplier_id;
+    }
+
+    public void setPrice(int price) {
         this.price = price;
     }
 

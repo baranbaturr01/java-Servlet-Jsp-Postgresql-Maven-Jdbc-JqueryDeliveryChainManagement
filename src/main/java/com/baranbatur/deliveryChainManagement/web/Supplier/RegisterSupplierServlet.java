@@ -5,6 +5,7 @@ import com.baranbatur.deliveryChainManagement.bussiness.userResponse.UserRespons
 import com.baranbatur.deliveryChainManagement.dao.SupplierDao;
 import com.baranbatur.deliveryChainManagement.model.Supplier;
 import com.baranbatur.deliveryChainManagement.model.User;
+import com.baranbatur.deliveryChainManagement.service.JwtService;
 import com.baranbatur.deliveryChainManagement.service.PasswordHash;
 import com.baranbatur.deliveryChainManagement.service.ResponseWriter;
 import com.baranbatur.deliveryChainManagement.web.User.RegisterServlet;
@@ -20,6 +21,7 @@ public class RegisterSupplierServlet extends HttpServlet {
     SupplierDao supplierDao;
     PasswordHash passwordHash;
 
+
     public RegisterSupplierServlet() {
         this.supplierDao = new SupplierDao();
         this.passwordHash = new PasswordHash();
@@ -34,6 +36,7 @@ public class RegisterSupplierServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        System.out.println("Register Supplier Servlet");
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
@@ -45,9 +48,8 @@ public class RegisterSupplierServlet extends HttpServlet {
 
         this.supplierDao.insertSupplier(supplier);
 
-        HttpSession session = request.getSession();
-        session.setAttribute("supplier_id", supplier.getId());
+        String token = JwtService.generateJwtToken(supplier.getId());
+        ResponseWriter.writeResponse(response, true, token);
 
-        ResponseWriter.writeResponse(response, true, SupplierResponse.from(supplier));
     }
 }

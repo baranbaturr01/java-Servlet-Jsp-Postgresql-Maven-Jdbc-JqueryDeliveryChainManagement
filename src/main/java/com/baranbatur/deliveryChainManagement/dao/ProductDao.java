@@ -9,7 +9,7 @@ import java.util.List;
 public class ProductDao extends DbConnection {
 
     private PreparedStatement preparedStatement = null;
-    private static final String INSERT_PRODUCT = "INSERT INTO products (name, description, price, image) VALUES (?, ?, ?, ?)";
+    private static final String INSERT_PRODUCT = "INSERT INTO products (name, description, price,stock, image,supplier_id) VALUES (?, ?, ?, ?,?,?)";
     private static final String UPDATE_PRODUCT = "UPDATE products SET name = ?, description = ?, price = ?, image = ? WHERE id = ?";
     private static final String DELETE_PRODUCT = "DELETE FROM products WHERE id = ?";
 
@@ -20,8 +20,10 @@ public class ProductDao extends DbConnection {
             this.preparedStatement = getConnection().prepareStatement(INSERT_PRODUCT);
             this.preparedStatement.setString(1, product.getName());
             this.preparedStatement.setString(2, product.getDescription());
-            this.preparedStatement.setDouble(3, product.getPrice());
-            this.preparedStatement.setString(4, product.getImage());
+            this.preparedStatement.setInt(3, product.getPrice());
+            this.preparedStatement.setInt(4, product.getStock());
+            this.preparedStatement.setString(5, product.getImage());
+            this.preparedStatement.setInt(6, product.getSupplier_id());
             this.preparedStatement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
