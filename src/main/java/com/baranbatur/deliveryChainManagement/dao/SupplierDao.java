@@ -12,6 +12,7 @@ public class SupplierDao extends DbConnection {
     PreparedStatement preparedStatement = null;
     public static final String INSERT_SUPPLIER = "INSERT INTO suppliers (name, email, password, phone) VALUES (?, ?, ?, ?)";
     public static final String SELECT_SUPPLIER_BY_EMAIL = "SELECT * FROM suppliers WHERE email = ?";
+    public static final String SELECT_SUPPLIER_BY_ID = "SELECT * FROM suppliers WHERE id = ?";
 
     public void insertSupplier(Supplier supplier) {
         try {
@@ -45,6 +46,25 @@ public class SupplierDao extends DbConnection {
         }
         return supplier;
 
+    }
 
+    public Supplier getSupplierById(int id) {
+
+        Supplier supplier = new Supplier();
+        try {
+            preparedStatement = getConnection().prepareStatement(SELECT_SUPPLIER_BY_ID);
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                supplier.setId(resultSet.getInt("id"));
+                supplier.setName(resultSet.getString("name"));
+                supplier.setEmail(resultSet.getString("email"));
+                supplier.setPhone(resultSet.getString("phone"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return supplier;
     }
 }

@@ -9,6 +9,7 @@ public class Product {
     private int stock;
     private String image;
     private int supplier_id;
+    private String supplierName;
 
 
     public Product(String name, String description, int price, int stock, String image, int supplier_id) {
@@ -18,6 +19,9 @@ public class Product {
         this.stock = stock;
         this.image = image;
         this.supplier_id = supplier_id;
+    }
+
+    public Product() {
     }
 
     public int getId() {
@@ -74,5 +78,13 @@ public class Product {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getSupplierName() {
+        return supplierName;
+    }
+
+    public void setSupplierName(String supplierName) {
+        this.supplierName = supplierName;
     }
 }
